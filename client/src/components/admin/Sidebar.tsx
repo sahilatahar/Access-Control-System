@@ -1,5 +1,6 @@
 import { useWindowSize } from "@uidotdev/usehooks"
 import { Link } from "react-router-dom"
+import useAuth from "../../hooks/useAuth"
 
 interface AdminSidebarProps {
 	sidebarOpen: boolean
@@ -8,6 +9,7 @@ interface AdminSidebarProps {
 
 function AdminSidebar({ sidebarOpen, setSidebarOpen }: AdminSidebarProps) {
 	const { width } = useWindowSize()
+	const { user } = useAuth()
 
 	const hideSidebar = () => {
 		if (width && width < 768) {
@@ -23,10 +25,12 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen }: AdminSidebarProps) {
 					: "w-[300px] min-w-[300px] max-w-[300px] px-2"
 			}`}
 		>
-			<Link to="/admin" className="" onClick={hideSidebar}>
-				<img src="/admin.png" alt="admin logo" className="w-1/2 mx-auto" />
-				<h1 className="text-xl font-medium text-center w-full">Admin</h1>
-			</Link>
+			<div className="space-y-2">
+				<img src="/admin.png" alt="admin logo" className="w-[100px] mx-auto" />
+				<h1 className="text-xl font-medium text-center w-full truncate">
+					{user?.name.split(" ")[0]}
+				</h1>
+			</div>
 			<div className="w-full space-y-2">
 				<Link
 					to="/admin"

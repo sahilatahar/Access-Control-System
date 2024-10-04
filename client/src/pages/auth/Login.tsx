@@ -47,10 +47,10 @@ function LoginPage() {
 	}
 
 	return (
-		<div className="min-h-screen flex justify-center items-center py-8">
+		<div className="min-h-screen flex justify-center items-center py-8 bg-green-100">
 			<main>
 				<form
-					className="w-[95vw] sm:w-[500px] md:shadow-box rounded-lg p-2 md:p-8 flex flex-col gap-4 text-base"
+					className="w-[95vw] sm:w-[500px] md:shadow-box rounded-lg p-2 md:p-8 flex flex-col gap-4 text-base bg-white"
 					onSubmit={handleSubmit}
 				>
 					<h1 className="text-3xl font-medium text-center py-4">

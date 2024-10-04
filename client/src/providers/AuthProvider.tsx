@@ -38,8 +38,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		try {
 			const response = await axios.get("/api/auth/verify")
 			if (response.data) {
-				setUser(response.data.user)
-				setRole(response.data.role)
+				const role = response.data.role
+				if (role === "admin") {
+					setUser(response.data.admin)
+				} else {
+					setUser(response.data.user)
+				}
+				setRole(role)
 				setIsAuthenticated(true)
 			}
 		} catch (error) {
