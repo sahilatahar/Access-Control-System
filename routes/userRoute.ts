@@ -3,6 +3,7 @@ import {
 	deleteUser,
 	getUser,
 	login,
+	logout,
 	register,
 	updateUser,
 } from "../controllers/userController.ts"
@@ -16,6 +17,7 @@ const router = Router()
 router
 	.post("/register", register)
 	.post("/login", login)
+	.post("/logout", logout)
 	.get("/:id", userAuthorization, getUser)
 	.put("/:id", userAuthorization, updateUser)
 	.delete("/:id", adminAuthorization, deleteUser)

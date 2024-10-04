@@ -108,3 +108,10 @@ export const deleteUser = async (
 		return res.status(500).json({ message: "Internal Server Error" })
 	}
 }
+
+export const logout = (req: Request, res: Response): Response => {
+	// Clear the authentication token cookie
+	res.clearCookie("token", { httpOnly: true, secure: true })
+
+	return res.status(200).json({ message: "User logged out successfully." })
+}

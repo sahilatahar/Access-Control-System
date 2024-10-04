@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 
 import userRoutes from "./routes/userRoute"
 import adminRoutes from "./routes/adminRoute"
+import authRoutes from "./routes/authRoute"
 
 // Loading environment variables from .env file
 dotenv.config()
@@ -19,11 +20,12 @@ connectDB()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-app.use("/api/users", userRoutes)
+app.use("/api/user", userRoutes)
 app.use("/api/admin", adminRoutes)
+app.use("/api/auth", authRoutes)
 
 app.get("*", (_, res) => {
-	res.status(404).json({ message: "Not Found" })
+	return res.status(404).json({ message: "Route does not exist" })
 })
 
 mongoose.connection.on("open", () => {
