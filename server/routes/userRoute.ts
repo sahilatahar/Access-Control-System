@@ -5,11 +5,11 @@ import {
 	login,
 	register,
 	updateUser,
-} from "../controllers/userController.ts"
+} from "../controllers/userController"
 import {
 	adminAuthorization,
 	userOrAdminAuthorization,
-} from "../middlewares/auth.middleware.ts"
+} from "../middlewares/auth.middleware"
 
 const router = Router()
 
