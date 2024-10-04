@@ -10,6 +10,7 @@ export const adminAuthorization = async (
 	next: NextFunction
 ) => {
 	const token = req.cookies?.token
+
 	if (!token) {
 		return res
 			.status(403)
@@ -56,7 +57,7 @@ export const adminAuthorization = async (
 }
 
 // Middleware to verify user permissions for accessing and modifying user data
-export const userAuthorization = async (
+export const userOrAdminAuthorization = async (
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -76,8 +77,14 @@ export const userAuthorization = async (
 			role: string
 		}
 
+		if (decoded.role === "admin") {
+			next()
+			return // <---- Removing this cause error
+		}
+
 		// Fetch the user from the database
 		const user: IUser | null = await User.findById(decoded.id)
+
 		if (!user) {
 			return res.status(404).json({ message: "User not found." })
 		}

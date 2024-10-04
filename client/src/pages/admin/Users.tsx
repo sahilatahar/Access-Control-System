@@ -1,8 +1,9 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { useOutletContext } from "react-router-dom"
-import * as data from "../../data/users"
 import { User } from "../../types/user"
 import useAuth from "../../hooks/useAuth"
+import axios from "../../api/axios"
+import { useWindowSize } from "@uidotdev/usehooks"
 
 interface OutletContextProps {
 	sidebarOpen: boolean
@@ -16,6 +17,7 @@ function Users() {
 	const sectionRef = useRef<HTMLElement>(null)
 	const { sidebarOpen } = useOutletContext<OutletContextProps>()
 	const { deleteUser } = useAuth()
+	const { width } = useWindowSize()
 
 	const goOnPrevPage = () => {
 		if (currentPageNumber === 1) return
@@ -57,11 +59,10 @@ function Users() {
 	}, [currentPageNumber, perPageData, users])
 
 	useEffect(() => {
-		// axios("/api/users").then((res) => {
-		// 	setUsers(res.data)
-		// 	setUsersToDisplay(res.data.slice(0, perPageData))
-		// })
-		setUsers(data.users)
+		axios("/api/admin/all-users").then((res) => {
+			setUsers(res.data)
+			setUsersToDisplay(res.data.slice(0, perPageData))
+		})
 	}, [perPageData])
 
 	return (
@@ -86,7 +87,12 @@ function Users() {
 				</select>
 				<div
 					className="overflow-x-auto py-2 transition-all duration-150 ease-in"
-					style={{ width: sidebarOpen ? "calc(100vw - 350px)" : "100%" }}
+					style={{
+						width:
+							sidebarOpen && width && width > 768
+								? "calc(100vw - 350px)"
+								: "100%",
+					}}
 				>
 					<table className="text-surface min-w-full table-fixed text-left font-light">
 						<thead className="text-center font-medium text-text-primary">

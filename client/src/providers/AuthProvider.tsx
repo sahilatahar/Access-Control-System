@@ -1,6 +1,7 @@
-import axios, { AxiosError } from "axios"
+import { AxiosError } from "axios"
 import { createContext, ReactNode, useEffect, useState } from "react"
 import { Admin, LoginCredentials, User } from "../types/user"
+import axios from "../api/axios"
 
 interface AuthContent {
 	isAuthenticated: boolean
@@ -16,7 +17,7 @@ interface AuthContent {
 		formData: LoginCredentials,
 		type: "user" | "admin"
 	) => Promise<{ message: string } | boolean>
-	logout: (type: "user" | "admin") => Promise<{ message: string } | boolean>
+	logout: () => Promise<{ message: string } | boolean>
 	deleteUser: (userId: string) => Promise<{ message: string } | boolean>
 }
 
@@ -33,15 +34,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [role, setRole] = useState<"user" | "admin" | null>(null)
 
 	// Verify function to check token
-	const verify = async (type: "user" | "admin") => {
+	const verify = async () => {
 		try {
-			const endpoint =
-				type === "admin" ? "/api/admin/verify" : "/api/user/verify"
-
-			const response = await axios.get(endpoint)
-			if (response.data.isAuthenticated) {
-				setUser(response.data)
-				setRole(type)
+			const response = await axios.get("/api/auth/verify")
+			if (response.data) {
+				setUser(response.data.user)
+				setRole(response.data.role)
 				setIsAuthenticated(true)
 			}
 		} catch (error) {
@@ -98,11 +96,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		}
 	}
 
-	const logout = async (type: "user" | "admin") => {
+	const logout = async () => {
 		try {
-			const endpoint =
-				type === "admin" ? "/api/admin/logout" : "/api/user/logout"
-			await axios.post(endpoint)
+			await axios.post("/api/auth/logout")
 			setUser(null)
 			setRole(null)
 			setIsAuthenticated(false)
@@ -144,7 +140,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	}
 
 	useEffect(() => {
-		verify("user")
+		verify()
 	}, [])
 
 	const value = {

@@ -43,12 +43,12 @@ export const updateLastLogin = async (
 		adminId,
 		{ lastLogin: new Date() },
 		{ new: true }
-	)
+	).select("-select")
 }
 
 // Get Admin by ID
 export const getAdminById = async (adminId: string): Promise<IAdmin | null> => {
-	return await Admin.findById(adminId)
+	return await Admin.findById(adminId).select("-password")
 }
 
 // Update Admin Details
@@ -56,7 +56,9 @@ export const updateAdmin = async (
 	adminId: string,
 	adminData: Partial<IAdmin>
 ): Promise<IAdmin | null> => {
-	return await Admin.findByIdAndUpdate(adminId, adminData, { new: true })
+	return await Admin.findByIdAndUpdate(adminId, adminData, {
+		new: true,
+	}).select("-password")
 }
 
 // Delete Admin

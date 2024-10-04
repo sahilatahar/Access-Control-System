@@ -12,7 +12,9 @@ export const updateUser = async (
 	id: string,
 	data: Partial<IUser>
 ): Promise<IUser | null> => {
-	const user = await User.findByIdAndUpdate(id, data, { new: true })
+	const user = await User.findByIdAndUpdate(id, data, { new: true }).select(
+		"-password"
+	)
 	return user
 }
 
@@ -22,7 +24,11 @@ export const deleteUser = async (id: string): Promise<{ message: string }> => {
 }
 
 export const getUser = async (id: string): Promise<IUser | null> => {
-	return await User.findById(id)
+	return await User.findById(id).select("-password")
+}
+
+export const getUsers = async (): Promise<IUser[]> => {
+	return await User.find().select("-password")
 }
 
 export const findUserByEmail = async (email: string): Promise<IUser | null> => {
@@ -47,5 +53,7 @@ export const generateToken = (user: IUser): string => {
 }
 
 export const updateLastLogin = async (userId: string): Promise<void> => {
-	await User.findByIdAndUpdate(userId, { lastLogin: new Date() })
+	await User.findByIdAndUpdate(userId, { lastLogin: new Date() }).select(
+		"-password"
+	)
 }

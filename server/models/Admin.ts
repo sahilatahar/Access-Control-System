@@ -3,10 +3,11 @@ import { Schema, model } from "mongoose"
 export interface IAdmin {
 	_id: string
 	name: string
+	age: string
+	address: string
 	email: string
-	dob: Date
 	password: string
-	lastLogin?: Date | null
+	lastLogin: Date
 }
 
 // Define Admin Schema
@@ -21,8 +22,12 @@ const adminSchema = new Schema<IAdmin>(
 			required: true,
 			unique: true,
 		},
-		dob: {
-			type: Date,
+		age: {
+			type: String,
+			required: true,
+		},
+		address: {
+			type: String,
 			required: true,
 		},
 		password: {
@@ -31,7 +36,7 @@ const adminSchema = new Schema<IAdmin>(
 		},
 		lastLogin: {
 			type: Date,
-			default: null,
+			default: new Date(),
 		},
 	},
 	{ timestamps: true }

@@ -22,4 +22,8 @@
 	.btn {
 		@apply bg-green-500 px-4 py-3 text-lg font-medium rounded-lg mt-2 text-white;
 	}
+
+	.btn-full {
+		@apply bg-green-500 px-4 py-3 text-lg font-medium rounded-lg mt-2 text-white w-full md:w-[400px];
+	}
 }

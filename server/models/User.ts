@@ -3,11 +3,11 @@ import { model, Schema } from "mongoose"
 export interface IUser extends Document {
 	_id: string
 	name: string
+	age: string
+	address: string
 	email: string
-	dob: Date
 	password: string
-	profileImage: string
-	lastLogin: Date | null
+	lastLogin: Date
 }
 
 // Define User Schema
@@ -22,17 +22,17 @@ const userSchema = new Schema<IUser>(
 			required: true,
 			unique: true,
 		},
-		dob: {
-			type: Date,
+		age: {
+			type: String,
+			required: true,
+		},
+		address: {
+			type: String,
 			required: true,
 		},
 		password: {
 			type: String,
 			required: true,
-		},
-		profileImage: {
-			type: String,
-			default: "",
 		},
 		lastLogin: {
 			type: Date,

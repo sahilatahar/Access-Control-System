@@ -3,23 +3,21 @@ import {
 	deleteUser,
 	getUser,
 	login,
-	logout,
 	register,
 	updateUser,
 } from "../controllers/userController.ts"
 import {
 	adminAuthorization,
-	userAuthorization,
+	userOrAdminAuthorization,
 } from "../middlewares/auth.middleware.ts"
 
 const router = Router()
 
 router
-	.post("/register", register)
+	.post("/", register)
 	.post("/login", login)
-	.post("/logout", logout)
-	.get("/:id", userAuthorization, getUser)
-	.put("/:id", userAuthorization, updateUser)
+	.get("/:id", userOrAdminAuthorization, getUser)
+	.put("/:id", userOrAdminAuthorization, updateUser)
 	.delete("/:id", adminAuthorization, deleteUser)
 
 export default router

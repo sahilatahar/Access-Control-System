@@ -100,10 +100,3 @@ export const deleteAdmin = async (req: Request, res: Response) => {
 		return res.status(404).json({ message: "Admin not found" })
 	}
 }
-
-export const logoutAdmin = (req: Request, res: Response): Response => {
-	// Clear the authentication token cookie
-	res.clearCookie("token", { httpOnly: true, secure: true })
-
-	return res.status(200).json({ message: "Admin logged out successfully." })
-}
