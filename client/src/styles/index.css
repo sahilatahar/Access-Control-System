@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	.input-group {
+		@apply flex-col sm:flex-row flex gap-4 w-full;
+	}
+
+	.form-control {
+		@apply flex flex-col gap-2 text-lg w-full;
+	}
+
+	.form-control label {
+		@apply font-medium text-base;
+	}
+
+	.form-control input {
+		@apply w-full px-4 py-2 border border-gray-500 rounded-md outline-none;
+	}
+
+	.btn {
+		@apply bg-green-500 px-4 py-3 text-lg font-medium rounded-lg mt-2 text-white;
+	}
+}
