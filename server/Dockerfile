@@ -1,8 +1,6 @@
-ARG NODE_VERSION=20.12.0
+FROM node:20-alpine
 
-FROM node:${NODE_VERSION}-alpine
-
-WORKDIR /usr/src/app
+WORKDIR /access-control-system/server
 
 COPY . .
 
@@ -16,7 +14,7 @@ RUN npm run build
 ENV NODE_ENV production
 
 # Copy package.json so that package manager commands can be used.
-COPY package.json .
+COPY package*.json .
 
 EXPOSE 3000
 
