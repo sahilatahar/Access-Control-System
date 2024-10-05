@@ -1,13 +1,13 @@
 import { Router } from "express"
-import { adminAuthorization } from "middlewares/auth.middleware"
+import { adminAuthorization } from "../middlewares/auth.middleware.js"
 import {
 	deleteAdmin,
 	getAdmin,
 	loginAdmin,
 	registerAdmin,
 	updateAdmin,
-} from "../controllers/adminController"
-import { getUsers } from "../controllers/userController"
+} from "../controllers/adminController.js"
+import { getUsers } from "../controllers/userController.js"
 
 const router = Router()
 

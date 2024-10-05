@@ -1,4 +1,4 @@
-import Admin, { IAdmin } from "../models/Admin"
+import Admin, { IAdmin } from "../models/Admin.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 

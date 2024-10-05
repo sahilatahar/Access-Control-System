@@ -1,14 +1,14 @@
 import express from "express"
 import dotenv from "dotenv"
-import connectDB from "./config/dbConfig"
+import connectDB from "./config/dbConfig.js"
 import mongoose from "mongoose"
 import cors from "cors"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 
-import userRoutes from "./routes/userRoute"
-import adminRoutes from "./routes/adminRoute"
-import authRoutes from "./routes/authRoute"
+import userRoutes from "./routes/userRoute.js"
+import adminRoutes from "./routes/adminRoute.js"
+import authRoutes from "./routes/authRoute.js"
 
 // Loading environment variables from .env file
 dotenv.config()

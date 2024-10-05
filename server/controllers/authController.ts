@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
 import jwt from "jsonwebtoken"
-import Admin, { IAdmin } from "../models/Admin"
-import User, { IUser } from "../models/User"
-import * as adminService from "../services/adminService"
-import * as userService from "../services/userService"
+import Admin, { IAdmin } from "../models/Admin.js"
+import User, { IUser } from "../models/User.js"
+import * as adminService from "../services/adminService.js"
+import * as userService from "../services/userService.js"
 
 // Verify the logged-in user or admin and return their data and role
 export const verifyUserOrAdmin = async (

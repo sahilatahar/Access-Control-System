@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { ZodError } from "zod"
-import * as userService from "../services/userService"
-import { loginSchema, userSchema } from "../validations/userValidation"
+import * as userService from "../services/userService.js"
+import { loginSchema, userSchema } from "../validations/userValidation.js"
 
 // Register a new user
 export const register = async (

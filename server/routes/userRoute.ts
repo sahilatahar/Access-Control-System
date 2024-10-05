@@ -5,11 +5,11 @@ import {
 	login,
 	register,
 	updateUser,
-} from "../controllers/userController"
+} from "../controllers/userController.js"
 import {
 	adminAuthorization,
 	userOrAdminAuthorization,
-} from "../middlewares/auth.middleware"
+} from "../middlewares/auth.middleware.js"
 
 const router = Router()
 

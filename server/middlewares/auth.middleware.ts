@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import jwt from "jsonwebtoken"
-import Admin, { IAdmin } from "../models/Admin"
-import User, { IUser } from "../models/User"
+import Admin, { IAdmin } from "../models/Admin.js"
+import User, { IUser } from "../models/User.js"
 
 // Middleware to verify admin permissions for user and admin modifications
 export const adminAuthorization = async (
