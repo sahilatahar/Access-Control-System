@@ -60,7 +60,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 			const endpoint = type === "admin" ? "/api/admin" : "/api/user"
 
 			const response = await axios.post(endpoint, formData)
-			setUser(response.data.user)
+			if (type === "admin") {
+				setUser(response.data.admin)
+			} else {
+				setUser(response.data.user)
+			}
 			setIsAuthenticated(true)
 			setRole(type)
 			setLoading(false)
@@ -83,7 +87,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 			const endpoint = type === "admin" ? "/api/admin/login" : "/api/user/login"
 
 			const response = await axios.post(endpoint, formData)
-			setUser(response.data.user)
+
+			if (type === "admin") {
+				setUser(response.data.admin)
+			} else {
+				setUser(response.data.user)
+			}
 			setIsAuthenticated(true)
 			setRole(type)
 			setLoading(false)

@@ -3,8 +3,6 @@ import useAuth from "../../hooks/useAuth"
 function AdminProfile() {
 	const { user, logout } = useAuth()
 
-	if (!user) return
-
 	return (
 		<div className="h-[calc(100vh-80px)] flex items-center sm:justify-center flex-col gap-8 overflow-auto px-2 py-8">
 			<div className="text-center space-y-4">
@@ -18,7 +16,7 @@ function AdminProfile() {
 								Name
 							</th>
 							<td className="whitespace-nowrap border px-6 py-4">
-								{user.name}
+								{user?.name}
 							</td>
 						</tr>
 						<tr>
@@ -26,21 +24,23 @@ function AdminProfile() {
 								Email
 							</th>
 							<td className="whitespace-nowrap border px-6 py-4">
-								{user.email}
+								{user?.email}
 							</td>
 						</tr>
 						<tr>
 							<th scope="col" className="border px-6 py-4">
 								Age
 							</th>
-							<td className="whitespace-nowrap border px-6 py-4">{user.age}</td>
+							<td className="whitespace-nowrap border px-6 py-4">
+								{user?.age}
+							</td>
 						</tr>
 						<tr>
 							<th scope="col" className="border px-6 py-4">
 								Address
 							</th>
 							<td className="whitespace-nowrap border px-6 py-4">
-								{user.address}
+								{user?.address}
 							</td>
 						</tr>
 					</tbody>

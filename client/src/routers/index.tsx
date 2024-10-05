@@ -11,7 +11,7 @@ import ProtectRoute from "./ProtectRoute"
 import AuthRedirect from "./AuthRedirect"
 import Users from "../pages/admin/Users"
 import AdminDashboard from "../pages/admin/Dashboard"
-import AdminProfile from "../components/admin/Profile"
+import AdminProfile from "../pages/admin/Profile"
 
 const routes = createBrowserRouter([
 	{
