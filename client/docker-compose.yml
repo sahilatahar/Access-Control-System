@@ -1,0 +1,17 @@
+services:
+  acs-client:
+    image: acs-client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: acs-client
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_SERVER_URL=${VITE_SERVER_URL}
+    networks:
+      - frontend
+
+networks:
+  frontend:
+    driver: bridge
